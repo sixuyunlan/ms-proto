@@ -1,0 +1,13 @@
+
+syntax ="proto3"; //
+
+option go_package="../service"; //设置包名
+
+package service;  //包名
+
+message User{
+  string Username =1;
+  int32 Age =2;
+  optional string password =3;
+  repeated string addresses =4;
+}

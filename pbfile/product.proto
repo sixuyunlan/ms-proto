@@ -1,0 +1,35 @@
+
+
+
+syntax ="proto3"; //
+
+import "user.proto";
+import "any.proto";
+
+option go_package="../service"; //设置包名
+
+
+package service;  //包名
+
+message  ProductRequest{
+  int32 prod_id = 1;
+}
+
+message Content{
+  string  msg =1 ;
+}
+
+
+message ProductResponse{
+  int32 prod_stock = 1;
+  User user=2;
+  google.protobuf.Any data =3;
+}
+
+service  ProdService{
+  rpc GetProductStock(ProductRequest) returns (ProductResponse);
+  rpc UpdataProductStockClientStream(stream ProductRequest) returns(ProductResponse);
+  rpc GetProductStockServerStream(ProductRequest) returns(stream ProductResponse);
+  rpc SayHelloStream(stream ProductRequest) returns(stream ProductResponse);
+
+}
